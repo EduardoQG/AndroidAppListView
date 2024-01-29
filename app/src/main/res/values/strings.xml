@@ -9,4 +9,12 @@
 
     <string name="menu_peliculas">Películas</string>
     <string name="menu_series">Series</string>
+
+    <string name="titulo">Título:</string>
+    <string name="director">Director:</string>
+    <string name="reparto">Reparto:</string>
+    <string name="clasificacion">Clasificación:</string>
+    <string name="sinopsis">Sinopsis:</string>
+    <string name="temporadas">Temporadas:</string>
+
 </resources>

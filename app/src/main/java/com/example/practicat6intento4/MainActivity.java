@@ -1,9 +1,13 @@
 package com.example.practicat6intento4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     ListView listaPelis;
     ListView listaSeries;
     ArrayList<ListItem> elementos;
+    ImageView imagenPortada;
+    TextView tituloPeli, directorPeli, repartoPeli, clasificacionPeli, sinopsisPeli;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         listaPelis = findViewById(R.id.miListaPelis);
         listaSeries = findViewById(R.id.miListaSeries);
 
+        // PELICULAS:
         elementos = new ArrayList<ListItem>();
         elementos.add(new ListItem("Ciudad de Dios", R.drawable.ciudaddedios));
         /*
@@ -51,6 +58,44 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, R.layout.list_item, elementos);
         // Asignar el adaptador a nuestro ListView
         listaPelis.setAdapter(myAdapter);
+
+        listaPelis.setOnItemClickListener((adapterView, view, position, id) -> {
+
+            ListItem clickedItem = elementos.get(position);
+            String itemName = clickedItem.getTexto();
+            Intent intent = new Intent(MainActivity.this, activityDatos.class);
+            intent.putExtra("titulo", itemName);
+            intent.putExtra("idImagen", clickedItem.getImagenId());
+            startActivity(intent);
+        });
+
+        // SERIES:
+        /*
+        elementos = new ArrayList<ListItem>();
+        elementos.add(new ListItem("Me llamo Earl", R.drawable.mellamoearl));
+
+        elementos.add("Cádiz");
+        elementos.add("Córdoba");
+        elementos.add("Granada");
+        elementos.add("Huelva");
+        elementos.add("Jaén");
+        elementos.add("Málaga");
+        elementos.add("Sevilla");
+
+
+        // Asignar el adaptador a nuestro ListView
+        listaSeries.setAdapter(myAdapter);
+
+        listaSeries.setOnItemClickListener((adapterView, view, position, id) -> {
+
+            ListItem clickedItem = elementos.get(position);
+            String itemName = clickedItem.getTexto();
+            Intent intent = new Intent(MainActivity.this, activitySeries.class);
+            intent.putExtra("titulo", itemName);
+            intent.putExtra("idImagen", clickedItem.getImagenId());
+            startActivity(intent);
+        });
+        */
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
@@ -74,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
         cargarDatos();
     }
 
+
+
+
+
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -82,9 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarDatos() {
-        // Realizar la carga de datos y configuración del menú aquí
 
-        // Por ejemplo, cargar elementos para el menú de películas
         elementos = new ArrayList<>();
         elementos.add(new ListItem("Ciudad de Dios", R.drawable.ciudaddedios));
 
