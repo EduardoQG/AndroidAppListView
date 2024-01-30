@@ -9,6 +9,8 @@
 
     <string name="menu_peliculas">Películas</string>
     <string name="menu_series">Series</string>
+    <string name="inicio">Inicio</string>
+    <string name="byEdu">By Edu Quiroga</string>
 
     <string name="titulo">Título:</string>
     <string name="director">Director:</string>
